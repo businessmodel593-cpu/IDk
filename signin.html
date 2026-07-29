@@ -24,8 +24,12 @@ nav { display:flex; justify-content:space-between; align-items:center; padding:1
 .auth-box h3 { margin-bottom:1rem; font-family:'Playfair Display', serif; }
 .auth-box input { width:100%; padding:0.7rem; margin-bottom:1rem; border-radius:6px; border:none; }
 .auth-box button { width:100%; padding:0.8rem; background:#b3141a; color:#fff; border:none; border-radius:30px; font-weight:500; cursor:pointer; margin-bottom:0.6rem; }
+.auth-box button:disabled { opacity:0.6; cursor:not-allowed; }
 .auth-toggle { color:#b3141a; cursor:pointer; font-size:0.9rem; }
 .auth-msg { font-size:0.85rem; min-height:1.2rem; margin-top:0.5rem; }
+.signed-in-box { display:none; }
+.signed-in-box p { margin-bottom:1rem; }
+.signed-in-box button { width:100%; padding:0.8rem; background:transparent; border:1px solid #b3141a; color:#fff; border-radius:30px; cursor:pointer; }
 footer { background:#000; color:#fff; text-align:center; padding:1.5rem; border-top:2px solid #b3141a; }
 .socials a { margin:0 10px; color:#b3141a; }
 </style>
@@ -54,16 +58,20 @@ footer { background:#000; color:#fff; text-align:center; padding:1.5rem; border-
 <h3>Sign In</h3>
 <input type="email" id="signinEmail" placeholder="Email address">
 <input type="password" id="signinPassword" placeholder="Password">
-<button onclick="handleAuth('signin')">Sign In</button>
+<button id="signinBtn" onclick="handleAuth('signin')">Sign In</button>
 <div class="auth-toggle" onclick="toggleAuth('signup')">Don't have an account? Sign Up</div>
 </div>
 <div id="signupForm" style="display:none">
 <h3>Sign Up</h3>
 <input type="text" id="signupName" placeholder="Full name">
 <input type="email" id="signupEmail" placeholder="Email address">
-<input type="password" id="signupPassword" placeholder="Password">
-<button onclick="handleAuth('signup')">Sign Up</button>
+<input type="password" id="signupPassword" placeholder="Password (min 6 characters)">
+<button id="signupBtn" onclick="handleAuth('signup')">Sign Up</button>
 <div class="auth-toggle" onclick="toggleAuth('signin')">Already have an account? Sign In</div>
+</div>
+<div class="signed-in-box" id="signedInBox">
+<p id="signedInMsg"></p>
+<button onclick="handleSignOut()">Sign Out</button>
 </div>
 <div class="auth-msg" id="authMsg"></div>
 </div>
@@ -78,12 +86,16 @@ footer { background:#000; color:#fff; text-align:center; padding:1.5rem; border-
 </footer>
 
 <script type="module">
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    updateProfile
+  } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-  // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyB2BkGKu2ZcnHrRCHm9wnz1YKS_w--lfJs",
     authDomain: "project-59ebb2b4-ad7e-4328-b2f.firebaseapp.com",
@@ -93,29 +105,101 @@ footer { background:#000; color:#fff; text-align:center; padding:1.5rem; border-
     appId: "1:427898142002:web:517fe3ef3c3d53ac212b2b"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const signinForm = document.getElementById('signinForm');
+  const signupForm = document.getElementById('signupForm');
+  const signedInBox = document.getElementById('signedInBox');
+  const signedInMsg = document.getElementById('signedInMsg');
+  const authMsg = document.getElementById('authMsg');
+
+  function setMsg(text, isError) {
+    authMsg.style.color = isError ? '#ff6b6b' : '#4caf50';
+    authMsg.textContent = text;
+  }
+
+  function setLoading(type, loading) {
+    const btn = document.getElementById(type === 'signin' ? 'signinBtn' : 'signupBtn');
+    btn.disabled = loading;
+    btn.textContent = loading ? 'Please wait...' : (type === 'signin' ? 'Sign In' : 'Sign Up');
+  }
+
+  window.toggleAuth = function (which) {
+    signinForm.style.display = which === 'signin' ? 'block' : 'none';
+    signupForm.style.display = which === 'signup' ? 'block' : 'none';
+    authMsg.textContent = '';
+  };
+
+  window.handleAuth = async function (type) {
+    authMsg.textContent = '';
+    if (type === 'signin') {
+      const email = document.getElementById('signinEmail').value.trim();
+      const password = document.getElementById('signinPassword').value;
+      if (!email || !password) { setMsg('Please enter your email and password.', true); return; }
+      setLoading('signin', true);
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        setMsg('Signed in successfully!', false);
+      } catch (err) {
+        setMsg(friendlyError(err), true);
+      } finally {
+        setLoading('signin', false);
+      }
+    } else {
+      const name = document.getElementById('signupName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value;
+      if (!name || !email || !password) { setMsg('Please fill in all fields.', true); return; }
+      if (password.length < 6) { setMsg('Password must be at least 6 characters.', true); return; }
+      setLoading('signup', true);
+      try {
+        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(cred.user, { displayName: name });
+        setMsg('Account created! You are now signed in.', false);
+      } catch (err) {
+        setMsg(friendlyError(err), true);
+      } finally {
+        setLoading('signup', false);
+      }
+    }
+  };
+
+  window.handleSignOut = async function () {
+    try {
+      await signOut(auth);
+      setMsg('Signed out.', false);
+    } catch (err) {
+      setMsg(friendlyError(err), true);
+    }
+  };
+
+  function friendlyError(err) {
+    const code = err && err.code ? err.code : '';
+    if (code.includes('email-already-in-use')) return 'That email is already registered. Try signing in instead.';
+    if (code.includes('invalid-email')) return 'That email address looks invalid.';
+    if (code.includes('user-not-found') || code.includes('wrong-password') || code.includes('invalid-credential')) return 'Incorrect email or password.';
+    if (code.includes('weak-password')) return 'Password must be at least 6 characters.';
+    if (code.includes('network-request-failed')) return 'Network error. Please check your connection and try again.';
+    return 'Something went wrong. Please try again.';
+  }
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      signinForm.style.display = 'none';
+      signupForm.style.display = 'none';
+      signedInBox.style.display = 'block';
+      signedInMsg.textContent = 'Signed in as ' + (user.displayName || user.email);
+    } else {
+      signedInBox.style.display = 'none';
+      signinForm.style.display = 'block';
+    }
+  });
 </script>
 
 <script>
 function toggleMenu() {
  document.getElementById("navLinks").classList.toggle("show");
-}
-function toggleAuth(which) {
- document.getElementById('signinForm').style.display = which === 'signin' ? 'block' : 'none';
- document.getElementById('signupForm').style.display = which === 'signup' ? 'block' : 'none';
- document.getElementById('authMsg').textContent = '';
-}
-function handleAuth(type) {
- var msg = document.getElementById('authMsg');
- var email = type === 'signin' ? document.getElementById('signinEmail').value : document.getElementById('signupEmail').value;
- if (!email || email.indexOf('@') === -1) {
- msg.style.color = '#ff6b6b';
- msg.textContent = 'Please enter a valid email address.';
- return;
- }
- msg.style.color = '#4caf50';
- msg.textContent = type === 'signin' ? 'Signed in successfully (demo only — connect a backend to store real accounts).' : 'Account created (demo only — connect a backend to store real accounts).';
 }
 </script>
 </body>
