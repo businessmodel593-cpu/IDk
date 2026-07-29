@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Location | Come & Eat</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background:#fff; color:#222; }
+a { text-decoration:none; color:inherit; }
+header { position:sticky; top:0; background:#000; color:#fff; z-index:1000; border-bottom:2px solid #b3141a; }
+nav { display:flex; justify-content:space-between; align-items:center; padding:1rem; position:relative; }
+.logo { font-family:'Playfair Display', serif; font-size:1.4rem; color:#b3141a; }
+.hamburger { font-size:1.8rem; cursor:pointer; }
+.nav-links { display:none; flex-direction:column; background:#000; position:absolute; top:60px; right:0; min-width:220px; border:1px solid #b3141a; border-top:none; }
+.nav-links.show { display:flex; }
+.nav-links a { padding:1rem; border-top:1px solid rgba(255,255,255,0.1); }
+.nav-links a:hover { background:#b3141a; }
+.nav-links .signin-link { color:#b3141a; font-weight:600; }
+section { padding:3rem 1.2rem; max-width:700px; margin:auto; text-align:center; }
+h1 { margin-bottom:2rem; color:#000; font-family:'Playfair Display', serif; }
+.location p { font-size:1.1rem; margin-bottom:0.6rem; }
+.whatsapp { display:inline-block; margin-top:1rem; background:#25d366; color:#fff; padding:0.8rem 1.5rem; border-radius:30px; }
+footer { background:#000; color:#fff; text-align:center; padding:1.5rem; border-top:2px solid #b3141a; }
+.socials a { margin:0 10px; color:#b3141a; }
+</style>
+</head>
+<body>
+<header>
+<nav>
+<div class="logo">Come & Eat</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+<div class="nav-links" id="navLinks">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="menu.html">Menu</a>
+<a href="gallery.html">Gallery</a>
+<a href="hours.html">Hours</a>
+<a href="location.html">Location</a>
+<a href="owner.html">Owner</a>
+<a href="signin.html" class="signin-link">Sign In / Sign Up</a>
+</div>
+</nav>
+</header>
+<section class="location">
+<h1>Our Location</h1>
+<p>📍 Owerri, Imo State, Nigeria</p>
+<p>📞 +234 800 000 0000</p>
+<a class="whatsapp" href="https://wa.me/2348000000000" target="_blank">Order on WhatsApp</a>
+</section>
+<footer>
+<p>&copy; 2026 Come & Eat</p>
+<div class="socials">
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+<a href="#">Twitter</a>
+</div>
+</footer>
+<script>
+function toggleMenu() {
+ document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
+</body>
+</html>
