@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Come & Eat</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background:#fff; color:#222; scroll-behavior:smooth; }
+a { text-decoration:none; color:inherit; }
+header { position:sticky; top:0; background:#000; color:#fff; z-index:1000; border-bottom:2px solid #b3141a; }
+nav { display:flex; justify-content:space-between; align-items:center; padding:1rem; position:relative; }
+.logo { font-family:'Playfair Display', serif; font-size:1.4rem; color:#b3141a; }
+.hamburger { font-size:1.8rem; cursor:pointer; }
+.nav-links { display:none; flex-direction:column; background:#000; position:absolute; top:60px; right:0; min-width:220px; border:1px solid #b3141a; border-top:none; }
+.nav-links.show { display:flex; }
+.nav-links a { padding:1rem; border-top:1px solid rgba(255,255,255,0.1); }
+.nav-links a:hover { background:#b3141a; }
+.nav-links .signin-link { color:#b3141a; font-weight:600; }
+section { padding:3rem 1.2rem; max-width:900px; margin:auto; }
+h1 { font-family:'Playfair Display', serif; text-align:center; margin-bottom:2rem; color:#000; }
+.about-hero { height:40vh; background:linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("https://images.unsplash.com/photo-1512058564366-18510be2db19?w=1600&q=80") center/cover no-repeat; display:flex; align-items:center; justify-content:center; }
+.about-hero h1 { color:#fff; margin:0; }
+.about-body p { line-height:1.9; margin-bottom:1.2rem; font-size:1.05rem; }
+.about-body h2 { color:#b3141a; font-family:'Playfair Display', serif; margin:1.8rem 0 0.8rem; }
+footer { background:#000; color:#fff; text-align:center; padding:1.5rem; border-top:2px solid #b3141a; }
+.socials a { margin:0 10px; color:#b3141a; }
+</style>
+</head>
+<body>
+<header>
+<nav>
+<div class="logo">Come & Eat</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+<div class="nav-links" id="navLinks">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="menu.html">Menu</a>
+<a href="gallery.html">Gallery</a>
+<a href="hours.html">Hours</a>
+<a href="location.html">Location</a>
+<a href="owner.html">Owner</a>
+<a href="signin.html" class="signin-link">Sign In / Sign Up</a>
+</div>
+</nav>
+</header>
+<div class="about-hero"><h1>Our Story</h1></div>
+<section class="about-body">
+<h2>Where It All Began</h2>
+<p>Come & Eat started as a small family kitchen in the heart of Owerri, born out of a simple belief: that real Nigerian food, cooked the way our grandmothers cooked it, deserves a place at every table. What began with a single pot of egusi soup shared among neighbors has grown into a home for anyone craving the true taste of home — rich, hearty, and full of soul.</p>
+<h2>Rooted in Tradition</h2>
+<p>Every dish that leaves our kitchen carries generations of Igbo and wider Nigerian culinary heritage. We source fresh vegetables, quality meats, and authentic spices from trusted local markets, and we prepare our soups, swallows, and stews the slow, traditional way — no shortcuts, no compromises. From smoky ogbono to peppery oha soup, pounded yam pounded fresh daily to perfectly seasoned jollof rice, we treat every recipe as something sacred, passed down and perfected.</p>
+<h2>More Than a Meal</h2>
+<p>We believe food is a form of hospitality. When you walk through our doors, or place an order for delivery, you're not just a customer — you're family. Our team greets every guest with warmth, serves every plate with pride, and works hard to make sure your first bite reminds you of home, wherever home might be.</p>
+<h2>Come and Eat Fast Here</h2>
+<p>Whether you're stopping by for a quick lunch, ordering a feast for a celebration, or simply craving a taste of Nigeria, Come & Eat is ready for you. Fast service, generous portions, and unmistakable flavor — that's our promise, every single day.</p>
+</section>
+<footer>
+<p>&copy; 2026 Come & Eat</p>
+<div class="socials">
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+<a href="#">Twitter</a>
+</div>
+</footer>
+<script>
+function toggleMenu() {
+ document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
+</body>
+</html>
