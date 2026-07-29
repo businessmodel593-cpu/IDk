@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | Come & Eat</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background:#fff; color:#222; }
+a { text-decoration:none; color:inherit; }
+header { position:sticky; top:0; background:#000; color:#fff; z-index:1000; border-bottom:2px solid #b3141a; }
+nav { display:flex; justify-content:space-between; align-items:center; padding:1rem; position:relative; }
+.logo { font-family:'Playfair Display', serif; font-size:1.4rem; color:#b3141a; }
+.hamburger { font-size:1.8rem; cursor:pointer; }
+.nav-links { display:none; flex-direction:column; background:#000; position:absolute; top:60px; right:0; min-width:220px; border:1px solid #b3141a; border-top:none; }
+.nav-links.show { display:flex; }
+.nav-links a { padding:1rem; border-top:1px solid rgba(255,255,255,0.1); }
+.nav-links a:hover { background:#b3141a; }
+.nav-links .signin-link { color:#b3141a; font-weight:600; }
+section { padding:3rem 1.2rem; max-width:1200px; margin:auto; }
+h1 { text-align:center; margin-bottom:2rem; color:#000; font-family:'Playfair Display', serif; }
+.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; }
+.gallery-grid img { width:100%; height:200px; object-fit:cover; border-radius:10px; border:2px solid transparent; transition:border-color 0.2s ease; }
+.gallery-grid img:hover { border-color:#b3141a; }
+footer { background:#000; color:#fff; text-align:center; padding:1.5rem; border-top:2px solid #b3141a; }
+.socials a { margin:0 10px; color:#b3141a; }
+</style>
+</head>
+<body>
+<header>
+<nav>
+<div class="logo">Come & Eat</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+<div class="nav-links" id="navLinks">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="menu.html">Menu</a>
+<a href="gallery.html">Gallery</a>
+<a href="hours.html">Hours</a>
+<a href="location.html">Location</a>
+<a href="owner.html">Owner</a>
+<a href="signin.html" class="signin-link">Sign In / Sign Up</a>
+</div>
+</nav>
+</header>
+<section>
+<h1>Food Gallery</h1>
+<div class="gallery-grid">
+<img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&q=80" alt="Jollof rice">
+<img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&q=80" alt="Nigerian soup">
+<img src="https://images.unsplash.com/photo-1547573854-74d2a71d0826?w=600&q=80" alt="Grilled meat">
+<img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&q=80" alt="African cuisine plate">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Cooked stew">
+<img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Rice dish">
+<img src="https://images.unsplash.com/photo-1626082927389-6cd097cee6a6?w=600&q=80" alt="Soup and swallow">
+<img src="https://images.unsplash.com/photo-1604908177522-71a2fbaf6b47?w=600&q=80" alt="Fried plantain">
+<img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600&q=80" alt="Grilled fish">
+<img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Vegetable soup">
+<img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80" alt="Meat platter">
+<img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=600&q=80" alt="Spiced rice">
+<img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=600&q=80" alt="Stew with rice">
+<img src="https://images.unsplash.com/photo-1580959375944-abee8f22f5eb?w=600&q=80" alt="Traditional soup bowl">
+</div>
+</section>
+<footer>
+<p>&copy; 2026 Come & Eat</p>
+<div class="socials">
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+<a href="#">Twitter</a>
+</div>
+</footer>
+<script>
+function toggleMenu() {
+ document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
+</body>
+</html>
