@@ -1,0 +1,221 @@
+:root {
+  --green: #0f3d2e;
+  --gold: #c9a24d;
+  --white: #ffffff;
+  --dark: #111;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 3rem 0;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background: var(--green);
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.logo {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.nav-links {
+  display: none;
+  flex-direction: column;
+}
+
+.nav-links a {
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.6rem 0;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: var(--white);
+  margin: 5px 0;
+}
+
+.hero {
+  min-height: 100vh;
+  background: url("https://via.placeholder.com/1600x900?text=Anambra+Kitchen") center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+}
+
+.hero-content {
+  position: relative;
+  color: var(--white);
+  text-align: center;
+}
+
+.hero-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.8rem 1.6rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primary {
+  background: var(--gold);
+  color: var(--dark);
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid var(--white);
+  color: var(--white);
+}
+
+.menu-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.menu-filters button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--green);
+  background: none;
+  cursor: pointer;
+}
+
+.menu-filters .active {
+  background: var(--green);
+  color: var(--white);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.menu-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.menu-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.menu-card h3,
+.menu-card p {
+  padding: 0.8rem 1rem;
+}
+
+.menu-card span {
+  display: block;
+  padding: 0 1rem 1rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.footer {
+  background: var(--green);
+  color: var(--white);
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.footer a {
+  color: var(--gold);
+  margin: 0 0.5rem;
+  text-decoration: none;
+}
+
+.scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 0.6rem 0.9rem;
+  border: none;
+  background: var(--gold);
+  cursor: pointer;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

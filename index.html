@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Anambra Kitchen – Authentic Igbo & Nigerian Cuisine">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anambra Kitchen</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #fff;
+      color: #222;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAV */
+    header {
+      position: sticky;
+      top: 0;
+      background: #0b3d2e;
+      color: #fff;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: gold;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      background: #0b3d2e;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+    }
+
+    .nav-links a {
+      padding: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hamburger {
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("images/r.jfif") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 1rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.8rem 1.5rem;
+      background: gold;
+      color: #000;
+      border-radius: 30px;
+      font-weight: 500;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #0b3d2e;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ABOUT */
+    .about {
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* MENU */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .menu-card {
+      border: 1px solid #eee;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .menu-card h4 {
+      color: #0b3d2e;
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    /* HOURS */
+    .hours {
+      text-align: center;
+      line-height: 2;
+    }
+
+    /* CONTACT */
+    .contact {
+      text-align: center;
+    }
+
+    .whatsapp {
+      display: inline-block;
+      margin-top: 1rem;
+      background: #25d366;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0b3d2e;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .socials a {
+      margin: 0 10px;
+      color: gold;
+    }
+
+    /* DESKTOP */
+    @media(min-width: 768px) {
+      .nav-links {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        width: auto;
+      }
+      .nav-links a {
+        border: none;
+        margin-left: 1rem;
+      }
+      .hamburger {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Anambra Kitchen</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#hours">Hours</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Welcome to Anambra Kitchen</h1>
+    <p>Taste the heart of Anambra</p>
+    <a class="btn" href="#menu">View Menu</a>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <h2>About Anambra Kitchen</h2>
+  <p>
+    Anambra Kitchen brings you authentic Igbo and Nigerian dishes prepared with
+    traditional recipes, fresh ingredients, and cultural pride.
+  </p>
+</section>
+
+<section id="menu">
+  <h2>Our Menu</h2>
+  <div class="menu-grid">
+    <div class="menu-card"><h4>Egusi Soup</h4><p>₦3,500</p></div>
+    <div class="menu-card"><h4>Oha Soup</h4><p>₦3,500</p></div>
+    <div class="menu-card"><h4>Pounded Yam</h4><p>₦1,500</p></div>
+    <div class="menu-card"><h4>Jollof Rice</h4><p>₦2,500</p></div>
+    <div class="menu-card"><h4>Goat Meat</h4><p>₦2,000</p></div>
+    <div class="menu-card"><h4>Palm Wine</h4><p>₦1,000</p></div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Food Gallery</h2>
+  <div class="gallery-grid">
+    <img src="images/c.jfif">
+    <img src="images/p.jfif">
+    <img src="images/g.jfif">
+    <img src="images/i.jfif">
+    <img src="images/q.jfif">
+    <img src="images/w.jfif">
+    <img src="images/r.jfif">
+    <img src="images/u.jfif">
+    <img src="images/a.jfif">
+    <img src="images/b.jfif">
+  </div>
+</section>
+
+<section id="hours" class="hours">
+  <h2>Opening Hours</h2>
+  <p>MON – 7am – 5pm</p>
+  <p>TUE – 7am – 5pm</p>
+  <p>WED – 7am – 5pm</p>
+  <p>THU – 7am – 5pm</p>
+  <p>FRI – 7am – 5pm</p>
+  <p>SAT – 7am – 5pm</p>
+  <p>SUN – 10am – 4pm</p>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Contact Us</h2>
+  <p>📍 Owerri Imo State, Nigeria</p>
+  <p>📞 +234 800 000 0000</p>
+  <a class="whatsapp" href="https://wa.me/2348000000000" target="_blank">
+    Order on WhatsApp
+  </a>
+</section>
+
+<footer>
+  <p>&copy; 2026 Anambra Kitchen</p>
+  <div class="socials">
+    <a href="#">Facebook</a>
+    <a href="#">Instagram</a>
+    <a href="#">Twitter</a>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+  }
+</script>
+
+</body>
+</html>
