@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In / Sign Up | Come & Eat</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background:#fff; color:#222; }
+a { text-decoration:none; color:inherit; }
+header { position:sticky; top:0; background:#000; color:#fff; z-index:1000; border-bottom:2px solid #b3141a; }
+nav { display:flex; justify-content:space-between; align-items:center; padding:1rem; position:relative; }
+.logo { font-family:'Playfair Display', serif; font-size:1.4rem; color:#b3141a; }
+.hamburger { font-size:1.8rem; cursor:pointer; }
+.nav-links { display:none; flex-direction:column; background:#000; position:absolute; top:60px; right:0; min-width:220px; border:1px solid #b3141a; border-top:none; }
+.nav-links.show { display:flex; }
+.nav-links a { padding:1rem; border-top:1px solid rgba(255,255,255,0.1); }
+.nav-links a:hover { background:#b3141a; }
+.nav-links .signin-link { color:#b3141a; font-weight:600; }
+.auth { padding:3rem 1.2rem; text-align:center; background:#000; color:#fff; min-height:70vh; }
+.auth h1 { font-family:'Playfair Display', serif; margin-bottom:2rem; }
+.auth-box { max-width:400px; margin:auto; background:#111; padding:2rem; border-radius:10px; border-top:3px solid #b3141a; }
+.auth-box h3 { margin-bottom:1rem; font-family:'Playfair Display', serif; }
+.auth-box input { width:100%; padding:0.7rem; margin-bottom:1rem; border-radius:6px; border:none; }
+.auth-box button { width:100%; padding:0.8rem; background:#b3141a; color:#fff; border:none; border-radius:30px; font-weight:500; cursor:pointer; margin-bottom:0.6rem; }
+.auth-toggle { color:#b3141a; cursor:pointer; font-size:0.9rem; }
+.auth-msg { font-size:0.85rem; min-height:1.2rem; margin-top:0.5rem; }
+footer { background:#000; color:#fff; text-align:center; padding:1.5rem; border-top:2px solid #b3141a; }
+.socials a { margin:0 10px; color:#b3141a; }
+</style>
+</head>
+<body>
+<header>
+<nav>
+<div class="logo">Come & Eat</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+<div class="nav-links" id="navLinks">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="menu.html">Menu</a>
+<a href="gallery.html">Gallery</a>
+<a href="hours.html">Hours</a>
+<a href="location.html">Location</a>
+<a href="owner.html">Owner</a>
+<a href="signin.html" class="signin-link">Sign In / Sign Up</a>
+</div>
+</nav>
+</header>
+<section class="auth">
+<h1>Sign In / Sign Up</h1>
+<div class="auth-box">
+<div id="signinForm">
+<h3>Sign In</h3>
+<input type="email" id="signinEmail" placeholder="Email address">
+<input type="password" id="signinPassword" placeholder="Password">
+<button onclick="handleAuth('signin')">Sign In</button>
+<div class="auth-toggle" onclick="toggleAuth('signup')">Don't have an account? Sign Up</div>
+</div>
+<div id="signupForm" style="display:none">
+<h3>Sign Up</h3>
+<input type="text" id="signupName" placeholder="Full name">
+<input type="email" id="signupEmail" placeholder="Email address">
+<input type="password" id="signupPassword" placeholder="Password">
+<button onclick="handleAuth('signup')">Sign Up</button>
+<div class="auth-toggle" onclick="toggleAuth('signin')">Already have an account? Sign In</div>
+</div>
+<div class="auth-msg" id="authMsg"></div>
+</div>
+</section>
+<footer>
+<p>&copy; 2026 Come & Eat</p>
+<div class="socials">
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+<a href="#">Twitter</a>
+</div>
+</footer>
+<script>
+function toggleMenu() {
+ document.getElementById("navLinks").classList.toggle("show");
+}
+function toggleAuth(which) {
+ document.getElementById('signinForm').style.display = which === 'signin' ? 'block' : 'none';
+ document.getElementById('signupForm').style.display = which === 'signup' ? 'block' : 'none';
+ document.getElementById('authMsg').textContent = '';
+}
+function handleAuth(type) {
+ var msg = document.getElementById('authMsg');
+ var email = type === 'signin' ? document.getElementById('signinEmail').value : document.getElementById('signupEmail').value;
+ if (!email || email.indexOf('@') === -1) {
+ msg.style.color = '#ff6b6b';
+ msg.textContent = 'Please enter a valid email address.';
+ return;
+ }
+ msg.style.color = '#4caf50';
+ msg.textContent = type === 'signin' ? 'Signed in successfully (demo only — connect a backend to store real accounts).' : 'Account created (demo only — connect a backend to store real accounts).';
+}
+</script>
+</body>
+</html>
