@@ -1,469 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="description" content="Anambra Kitchen — Authentic Igbo & Nigerian Cuisine">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anambra Kitchen</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      background: #fff;
-      color: #222;
-      scroll-behavior: smooth;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* NAV */
-    header {
-      position: sticky;
-      top: 0;
-      background: #000;
-      color: #fff;
-      z-index: 1000;
-      border-bottom: 2px solid #b3141a;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: #b3141a;
-    }
-
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      background: #000;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-    }
-
-    .nav-links a {
-      padding: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .nav-links .signin-link {
-      color: #b3141a;
-      font-weight: 600;
-    }
-
-    .hamburger {
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    /* HERO */
-    .hero {
-      height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-        url("images/r.jfif") center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      padding: 1rem;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn {
-      padding: 0.8rem 1.5rem;
-      background: #b3141a;
-      color: #fff;
-      border-radius: 30px;
-      font-weight: 500;
-      display: inline-block;
-    }
-
-    section {
-      padding: 3rem 1rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #000;
-      font-family: 'Playfair Display', serif;
-    }
-
-    /* ABOUT */
-    .about {
-      text-align: center;
-      line-height: 1.7;
-    }
-
-    /* MENU */
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .menu-card {
-      border: 1px solid #eee;
-      padding: 1rem;
-      border-radius: 10px;
-      border-top: 3px solid #b3141a;
-    }
-
-    .menu-card h4 {
-      color: #000;
-    }
-
-    /* GALLERY */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .gallery-grid img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 2px solid transparent;
-      transition: border-color 0.2s ease;
-    }
-
-    .gallery-grid img:hover {
-      border-color: #b3141a;
-    }
-
-    /* HOURS */
-    .hours {
-      text-align: center;
-      line-height: 2;
-    }
-
-    /* LOCATION */
-    .location {
-      text-align: center;
-    }
-
-    .location iframe {
-      width: 100%;
-      max-width: 700px;
-      height: 300px;
-      border: 0;
-      border-radius: 10px;
-      margin-top: 1rem;
-    }
-
-    /* OWNER */
-    .owner {
-      text-align: center;
-    }
-
-    .owner-card {
-      max-width: 500px;
-      margin: auto;
-      padding: 1.5rem;
-      border: 1px solid #eee;
-      border-top: 3px solid #b3141a;
-      border-radius: 10px;
-    }
-
-    .owner-card img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-      border: 3px solid #b3141a;
-    }
-
-    /* CONTACT (kept in footer area, no longer in nav) */
-    .contact {
-      text-align: center;
-    }
-
-    .whatsapp {
-      display: inline-block;
-      margin-top: 1rem;
-      background: #25d366;
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      border-radius: 30px;
-    }
-
-    /* AUTH SECTION */
-    .auth {
-      text-align: center;
-      background: #000;
-      color: #fff;
-    }
-
-    .auth-box {
-      max-width: 400px;
-      margin: auto;
-      background: #111;
-      padding: 2rem;
-      border-radius: 10px;
-      border-top: 3px solid #b3141a;
-    }
-
-    .auth-box h3 {
-      margin-bottom: 1rem;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .auth-box input {
-      width: 100%;
-      padding: 0.7rem;
-      margin-bottom: 1rem;
-      border-radius: 6px;
-      border: none;
-    }
-
-    .auth-box button {
-      width: 100%;
-      padding: 0.8rem;
-      background: #b3141a;
-      color: #fff;
-      border: none;
-      border-radius: 30px;
-      font-weight: 500;
-      cursor: pointer;
-      margin-bottom: 0.6rem;
-    }
-
-    .auth-toggle {
-      color: #b3141a;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    .auth-msg {
-      font-size: 0.85rem;
-      color: #b3141a;
-      min-height: 1.2rem;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #000;
-      color: #fff;
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 3rem;
-      border-top: 2px solid #b3141a;
-    }
-
-    .socials a {
-      margin: 0 10px;
-      color: #b3141a;
-    }
-
-    /* DESKTOP */
-    @media(min-width: 768px) {
-      .nav-links {
-        display: flex;
-        position: static;
-        flex-direction: row;
-        width: auto;
-        align-items: center;
-      }
-      .nav-links a {
-        border: none;
-        margin-left: 1rem;
-      }
-      .hamburger {
-        display: none;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="description" content="Come & Eat — Authentic Igbo & Nigerian Cuisine">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Come & Eat</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background:#fff; color:#222; scroll-behavior:smooth; }
+a { text-decoration:none; color:inherit; }
+header { position:sticky; top:0; background:#000; color:#fff; z-index:1000; border-bottom:2px solid #b3141a; }
+nav { display:flex; justify-content:space-between; align-items:center; padding:1rem; position:relative; }
+.logo { font-family:'Playfair Display', serif; font-size:1.4rem; color:#b3141a; }
+.hamburger { font-size:1.8rem; cursor:pointer; }
+.nav-links { display:none; flex-direction:column; background:#000; position:absolute; top:60px; right:0; min-width:220px; border:1px solid #b3141a; border-top:none; }
+.nav-links.show { display:flex; }
+.nav-links a { padding:1rem; border-top:1px solid rgba(255,255,255,0.1); }
+.nav-links a:hover { background:#b3141a; }
+.nav-links .signin-link { color:#b3141a; font-weight:600; }
+.hero { height:100vh; background:linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80") center/cover no-repeat; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; padding:1rem; }
+.hero h1 { font-family:'Playfair Display', serif; font-size:2.5rem; margin-bottom:0.5rem; }
+.hero p { font-size:1.1rem; margin-bottom:1.5rem; }
+.btn { padding:0.8rem 1.5rem; background:#b3141a; color:#fff; border-radius:30px; font-weight:500; display:inline-block; }
+footer { background:#000; color:#fff; text-align:center; padding:1.5rem; border-top:2px solid #b3141a; }
+.socials a { margin:0 10px; color:#b3141a; }
+</style>
 </head>
-
 <body>
-
 <header>
-  <nav>
-    <div class="logo">Anambra Kitchen</div>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <div class="nav-links" id="navLinks">
-      <a href="#about">About</a>
-      <a href="#menu">Menu</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#hours">Hours</a>
-      <a href="#location">Location</a>
-      <a href="#owner">Owner</a>
-      <a href="#auth" class="signin-link">Sign In / Sign Up</a>
-    </div>
-  </nav>
+<nav>
+<div class="logo">Come & Eat</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+<div class="nav-links" id="navLinks">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="menu.html">Menu</a>
+<a href="gallery.html">Gallery</a>
+<a href="hours.html">Hours</a>
+<a href="location.html">Location</a>
+<a href="owner.html">Owner</a>
+<a href="signin.html" class="signin-link">Sign In / Sign Up</a>
+</div>
+</nav>
 </header>
-
 <section class="hero">
-  <div>
-    <h1>Come and Eat Fast Here</h1>
-    <p>Taste the heart of Anambra</p>
-    <a class="btn" href="#menu">View Menu</a>
-  </div>
+<div>
+<h1>Come and Eat Fast Here</h1>
+<p>Taste the heart of Anambra</p>
+<a class="btn" href="menu.html">View Menu</a>
+</div>
 </section>
-
-<section id="about" class="about">
-  <h2>About Anambra Kitchen</h2>
-  <p>
-    Anambra Kitchen brings you authentic Igbo and Nigerian dishes prepared with
-    traditional recipes, fresh ingredients, and cultural pride.
-  </p>
-</section>
-
-<section id="menu">
-  <h2>Our Menu</h2>
-  <div class="menu-grid">
-    <div class="menu-card"><h4>Egusi Soup</h4><p>₦3,500</p></div>
-    <div class="menu-card"><h4>Oha Soup</h4><p>₦3,500</p></div>
-    <div class="menu-card"><h4>Pounded Yam</h4><p>₦1,500</p></div>
-    <div class="menu-card"><h4>Jollof Rice</h4><p>₦2,500</p></div>
-    <div class="menu-card"><h4>Goat Meat</h4><p>₦2,000</p></div>
-    <div class="menu-card"><h4>Palm Wine</h4><p>₦1,000</p></div>
-  </div>
-</section>
-
-<section id="gallery">
-  <h2>Food Gallery</h2>
-  <div class="gallery-grid">
-    <img src="images/c.jfif" alt="Anambra Kitchen dish">
-    <img src="images/p.jfif" alt="Anambra Kitchen dish">
-    <img src="images/g.jfif" alt="Anambra Kitchen dish">
-    <img src="images/i.jfif" alt="Anambra Kitchen dish">
-    <img src="images/q.jfif" alt="Anambra Kitchen dish">
-    <img src="images/w.jfif" alt="Anambra Kitchen dish">
-    <img src="images/r.jfif" alt="Anambra Kitchen dish">
-    <img src="images/u.jfif" alt="Anambra Kitchen dish">
-    <img src="images/a.jfif" alt="Anambra Kitchen dish">
-    <img src="images/b.jfif" alt="Anambra Kitchen dish">
-    <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&q=80" alt="Jollof rice">
-    <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&q=80" alt="Nigerian soup">
-    <img src="https://images.unsplash.com/photo-1547573854-74d2a71d0826?w=600&q=80" alt="Grilled meat">
-    <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&q=80" alt="African cuisine plate">
-  </div>
-</section>
-
-<section id="hours" class="hours">
-  <h2>Opening Hours</h2>
-  <p>MON – 7am – 5pm</p>
-  <p>TUE – 7am – 5pm</p>
-  <p>WED – 7am – 5pm</p>
-  <p>THU – 7am – 5pm</p>
-  <p>FRI – 7am – 5pm</p>
-  <p>SAT – 7am – 5pm</p>
-  <p>SUN – 10am – 4pm</p>
-</section>
-
-<section id="location" class="location">
-  <h2>Our Location</h2>
-  <p>📍 Owerri, Imo State, Nigeria</p>
-  <p>📞 +234 800 000 0000</p>
-  <a class="whatsapp" href="https://wa.me/2348000000000" target="_blank">
-    Order on WhatsApp
-  </a>
-</section>
-
-<section id="owner" class="owner">
-  <h2>Meet the Owner</h2>
-  <div class="owner-card">
-    <img src="images/owner.jfif" alt="Owner of Anambra Kitchen" onerror="this.style.display='none'">
-    <h3>Anambra Kitchen Team</h3>
-    <p>Passionate about bringing authentic Igbo and Nigerian flavors to every table, cooked fresh with love and tradition.</p>
-  </div>
-</section>
-
-<section id="auth" class="auth">
-  <h2 style="color:#fff">Sign In / Sign Up</h2>
-  <div class="auth-box">
-    <div id="signinForm">
-      <h3>Sign In</h3>
-      <input type="email" id="signinEmail" placeholder="Email address">
-      <input type="password" id="signinPassword" placeholder="Password">
-      <button onclick="handleAuth('signin')">Sign In</button>
-      <div class="auth-toggle" onclick="toggleAuth('signup')">Don't have an account? Sign Up</div>
-    </div>
-    <div id="signupForm" style="display:none">
-      <h3>Sign Up</h3>
-      <input type="text" id="signupName" placeholder="Full name">
-      <input type="email" id="signupEmail" placeholder="Email address">
-      <input type="password" id="signupPassword" placeholder="Password">
-      <button onclick="handleAuth('signup')">Sign Up</button>
-      <div class="auth-toggle" onclick="toggleAuth('signin')">Already have an account? Sign In</div>
-    </div>
-    <div class="auth-msg" id="authMsg"></div>
-  </div>
-</section>
-
 <footer>
-  <p>&copy; 2026 Anambra Kitchen</p>
-  <div class="socials">
-    <a href="#">Facebook</a>
-    <a href="#">Instagram</a>
-    <a href="#">Twitter</a>
-  </div>
+<p>&copy; 2026 Come & Eat</p>
+<div class="socials">
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+<a href="#">Twitter</a>
+</div>
 </footer>
-
 <script>
-  function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("show");
-  }
-
-  function toggleAuth(which) {
-    document.getElementById('signinForm').style.display = which === 'signin' ? 'block' : 'none';
-    document.getElementById('signupForm').style.display = which === 'signup' ? 'block' : 'none';
-    document.getElementById('authMsg').textContent = '';
-  }
-
-  function handleAuth(type) {
-    var msg = document.getElementById('authMsg');
-    var email = type === 'signin'
-      ? document.getElementById('signinEmail').value
-      : document.getElementById('signupEmail').value;
-
-    if (!email || email.indexOf('@') === -1) {
-      msg.textContent = 'Please enter a valid email address.';
-      return;
-    }
-
-    msg.style.color = '#4caf50';
-    msg.textContent = type === 'signin'
-      ? 'Signed in successfully (demo only — connect a backend to store real accounts).'
-      : 'Account created (demo only — connect a backend to store real accounts).';
-  }
+function toggleMenu() {
+ document.getElementById("navLinks").classList.toggle("show");
+}
 </script>
-
 </body>
 </html>
